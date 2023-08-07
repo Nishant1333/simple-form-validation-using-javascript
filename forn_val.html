@@ -1,0 +1,166 @@
+<html>
+  <head>
+     <meta charset="utf-8">
+     <title>Form Validation</title>
+     <style>
+
+     body {
+       font-family: Arial, sans-serif;
+border: 2px solid #008080;
+
+       background-color: #008080;
+     }
+
+     h1 {
+       color:black;
+     }
+
+
+
+     form {
+       width: 400px;
+       margin: 20px auto;
+       padding: 20px;
+
+       border: 2px solid #008080;
+       border-radius: 10px;
+
+  background-image: linear-gradient(to right, #FF00FF, #FFFF00);
+  /* You can customize the gradient direction and color stops as per your design needs */
+
+
+
+     }
+
+     table {
+       width: 100%;
+     }
+
+     td {
+       padding: 10px;
+     }
+
+     input[type="text"],
+     select {
+       width: 100%;
+       padding: 8px;
+       border: 1px solid #ccc;
+       border-radius: 5px;
+     }
+
+     select {
+       cursor: pointer;
+     }
+
+     input[type="submit"] {
+
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  animation: glow 1s infinite; /* Apply the 'glow' animation */
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px #4CAF50; /* Initial glow effect */
+  }
+  50% {
+    box-shadow: 0 0 20px #4CAF50; /* Maximum glow effect at 50% of the animation */
+  }
+  100% {
+    box-shadow: 0 0 5px #4CAF50; /* Back to the initial glow effect */
+  }
+}
+
+     }
+
+     #demo {
+       margin-top: 10px;
+     }
+
+     /* Error message styles */
+     #error-msg {
+       color: red;
+       text-align: center;
+       margin-bottom: 10px;
+     }
+
+
+     </style>
+        <script type="text/javascript">
+        function validate() {
+        var text;
+           if( document.myForm.name.value == "" ) {
+             text = "Name cannot be empty";
+              document.getElementById("demo").innerHTML = text;
+              document.myForm.name.focus() ;
+              return false;
+           }
+           if( document.myForm.email.value == "" ) {
+             text = "E-mail cannot be empty";
+              document.getElementById("demo").innerHTML = text;
+              document.myForm.email.focus() ;
+              return false;
+           }
+      var emailID = document.myForm.email.value;
+      atposn = emailID.indexOf("@");
+      dotposn = emailID.lastIndexOf(".");
+      if (atposn < 1 || ( dotposn - atposn < 2 )) {
+      text = "Please enter valid email ID";
+      document.getElementById("demo").innerHTML = text;
+      document.myForm.email.focus() ;
+      return false;
+    }
+           if( document.myForm.phone.value == "" || isNaN( document.myForm.phone.value ) ||
+              document.myForm.phone.value.length != 10 ) {
+              text = "Please enter a valid 10-digit phone number";
+              document.getElementById("demo").innerHTML = text;
+              document.myForm.phone.focus() ;
+              return false;
+           }
+           if( document.myForm.subject.value == "0" ) {
+              text = "Please provide your area of expertise";
+              document.getElementById("demo").innerHTML = text;
+              return false;
+           }
+           return( true );
+        }
+     </script>
+  </head>
+  <body>
+     <form action = "" name = "myForm" onsubmit = "return(validate());">
+   	 <h1 align="center">USER REGISTRATION</H1>
+        <table align="center" cellspacing = "3" cellpadding = "3" border = "3">
+           <tr>
+              <td align = "right">Name</td>
+              <td><input type = "text" name = "name" /></td>
+           </tr>
+           <tr>
+              <td align = "right">E-mail</td>
+              <td><input type = "text" name = "email" /></td>
+           </tr>
+           <tr>
+              <td align = "right">Phone Number</td>
+              <td><input type = "text" name = "phone" /></td>
+           </tr>
+           <tr>
+              <td align = "right">Subject</td>
+              <td>
+                 <select name = "subject">
+                    <option value = "0" selected>Select</option>
+                    <option value = "1">HTML</option>
+                    <option value = "2">JavaScript</option>
+                    <option value = "3">CSS</option>
+                    <option value = "4">JSP</option>
+                 </select>
+              </td>
+           </tr>
+        </table>
+        <p id="demo" style="color:red; text-align:center"></p>
+  <div style="text-align:center"><input type = "submit" value = "Submit" /></div>
+     </form>
+  </body>
+</html>
